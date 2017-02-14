@@ -52,8 +52,11 @@ public class MainActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				Intent intent = new Intent(MainActivity.this,
-						ChapterActivity.class);
+//				 Intent intent = new Intent(MainActivity.this,
+//				 ChapterActivity.class);
+//				 intent.putExtra("id", (int) id);
+//				 startActivity(intent);
+				Intent intent = new Intent(MainActivity.this,	SlidingChapterActivity.class);
 				intent.putExtra("id", (int) id);
 				startActivity(intent);
 
@@ -69,52 +72,56 @@ public class MainActivity extends Activity {
 				android.R.color.holo_red_light,
 				android.R.color.holo_orange_light,
 				android.R.color.holo_green_light);
-		
-		//★2.设置刷新监听事件
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-            	books = bookDao.queryBooks();
-            	
-            	handler.sendEmptyMessage(1);
-            }
-        });
-        
-        listView.setOnScrollListener(new OnScrollListener() {  
-        	  
-        	@Override  
-        	public void onScrollStateChanged(AbsListView view, int scrollState) {  
-        	}  
-        	  
-        	@Override  
-        	public void onScroll(AbsListView view, int firstVisibleItem,  
-        	        int visibleItemCount, int totalItemCount) {  
-        	    boolean enable = false;  
-        	    if(listView != null && listView.getChildCount() > 0){  
-        	        // check if the first item of the list is visible  
-        	        boolean firstItemVisible = listView.getFirstVisiblePosition() == 0;  
-        	        // check if the top of the first item is visible  
-        	        boolean topOfFirstItemVisible = listView.getChildAt(0).getTop() == 0;  
-        	        // enabling or disabling the refresh layout  
-        	        enable = firstItemVisible && topOfFirstItemVisible;  
-        	    }  
-        	    swipeRefreshLayout.setEnabled(enable);  
-        	}}); 
-        
-//        swipeRefreshLayout.post(new Runnable() {  
-//            @Override  
-//            public void run() {  
-//            	swipeRefreshLayout.setRefreshing(true);  
-//            }  
-//        }); 
+
+		// ★2.设置刷新监听事件
+		swipeRefreshLayout
+				.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+					@Override
+					public void onRefresh() {
+						books = bookDao.queryBooks();
+
+						handler.sendEmptyMessage(1);
+					}
+				});
+
+		listView.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				boolean enable = false;
+				if (listView != null && listView.getChildCount() > 0) {
+					// check if the first item of the list is visible
+					boolean firstItemVisible = listView
+							.getFirstVisiblePosition() == 0;
+					// check if the top of the first item is visible
+					boolean topOfFirstItemVisible = listView.getChildAt(0)
+							.getTop() == 0;
+					// enabling or disabling the refresh layout
+					enable = firstItemVisible && topOfFirstItemVisible;
+				}
+				swipeRefreshLayout.setEnabled(enable);
+			}
+		});
+
+		// swipeRefreshLayout.post(new Runnable() {
+		// @Override
+		// public void run() {
+		// swipeRefreshLayout.setRefreshing(true);
+		// }
+		// });
 
 	}
-	
+
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            bookAdapter.notifyDataSetChanged();
-            swipeRefreshLayout.setRefreshing(false);
+			super.handleMessage(msg);
+			bookAdapter.notifyDataSetChanged();
+			swipeRefreshLayout.setRefreshing(false);
 		}
 	};
 

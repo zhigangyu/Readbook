@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.uplinfo.readbook.R;
 import com.uplinfo.readbook.bean.Chapter;
 import com.uplinfo.readbook.common.StringUtils;
 import com.uplinfo.readbook.common.TextEventListener;
@@ -156,6 +155,7 @@ public class TextPageView extends View {
 		
 		StringUtils.drawText(canvas, text, viewWidth, viewHeight, top, margin,
 				lineSpace, fontSpace, paint, margin);
+		
 		ViewUtil.drawBattery(canvas, 15, viewHeight - 80, "70");
 
 		ViewUtil.drawRight(canvas, titlePaint, (String.valueOf(pageNum + 1)
@@ -182,8 +182,9 @@ public class TextPageView extends View {
 
 	public void setChapter(Chapter chapter) {
 		this.chapter = chapter;
-		pages = StringUtils.calcText(chapter.getText(), viewWidth - margin * 2,
-				viewHeight - top - margin * 2, lineSpace, fontSpace, paint);
+		pages = StringUtils.calcText(chapter.getText(), viewWidth, viewHeight, top, margin,
+				lineSpace, fontSpace, paint, margin);
+
 		setPageNum(pageNum);
 	}
 

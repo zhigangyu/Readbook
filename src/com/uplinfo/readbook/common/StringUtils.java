@@ -31,21 +31,24 @@ public class StringUtils {
 		List<String> pages = new ArrayList<String>();
 
 		if (text != null) {
-			if(!text.startsWith(" ")){
+			if (!text.startsWith(" ")) {
 				text = "¡¡¡¡" + text;
 			}
 			char[] chs = text.toCharArray();
 			int x = 0;
 			int y = 0;
+			int line = 0;
 			for (char c : chs) {
 				if (x > width || c == '\r') {
 					x = 0;
 					y += lineHeight;
+					line++;
 				}
 				if (y > height) {
 					pages.add(buffer.toString());
 					buffer.setLength(0);
 					y = 0;
+					line = 0;
 				}
 
 				buffer.append(c);
@@ -76,12 +79,13 @@ public class StringUtils {
 	}
 
 	public static void drawText(Canvas canvas, String txt, int width,
-			int height, int top, int left, int lineSpace, int fontSpace, Paint paint,int marginHeight) {
+			int height, int top, int left, int lineSpace, int fontSpace,
+			Paint paint, int marginHeight) {
 		FontMetrics fm = paint.getFontMetrics();
 		int fontHeight = (int) Math.ceil(fm.descent - fm.ascent);
 		int fontWeight = (int) paint.measureText("Í¼");
 		int lineHeight = fontHeight + lineSpace;
-		
+
 		if (txt != null) {
 			
 			char[] chs = txt.toCharArray();
@@ -89,14 +93,14 @@ public class StringUtils {
 			int hh = top;
 
 			for (char c : chs) {
-				if (ww > (width - 2 * left) || c == '\r') {
+				if (ww > (width - 2 * left -2) || c == '\r') {
 					ww = left;
 					hh += lineHeight;
 				}
-				if (hh > (height - top - marginHeight*2)) {
+				if (hh > (height - top - marginHeight * 2)) {
 					break;
 				}
-	
+
 				canvas.drawText(String.valueOf(c), ww, hh, paint);
 
 				if (checkSingle(c)) {
@@ -106,7 +110,51 @@ public class StringUtils {
 				}
 
 			}
+
 		}
+	}
+
+	public static List<String> calcText(String txt, int width, int height,
+			int top, int left, int lineSpace, int fontSpace, Paint paint,
+			int marginHeight) {
+		FontMetrics fm = paint.getFontMetrics();
+		int fontHeight = (int) Math.ceil(fm.descent - fm.ascent);
+		int fontWeight = (int) paint.measureText("Í¼");
+		int lineHeight = fontHeight + lineSpace;
+
+		StringBuilder buffer = new StringBuilder();
+		List<String> pages = new ArrayList<String>();
+
+		if (txt != null) {
+			if (!txt.startsWith(" ")) {
+				txt = "¡¡¡¡" + txt;
+			}
+			char[] chs = txt.toCharArray();
+			int ww = left;
+			int hh = top;
+
+			for (char c : chs) {
+				if (ww > (width - 2 * left- 2) || c == '\r') {
+					ww = left;
+					hh += lineHeight;
+				}
+				if (hh > (height - top - marginHeight * 2)) {
+					pages.add(buffer.toString());
+					buffer.setLength(0);
+					hh = top;
+				}
+
+				buffer.append(c);
+				if (checkSingle(c)) {
+					ww += paint.measureText(String.valueOf(c)) + fontSpace;
+				} else {
+					ww += fontWeight + fontSpace;
+				}
+
+			}
+			pages.add(buffer.toString());
+		}
+		return pages;
 	}
 
 }
