@@ -24,7 +24,7 @@ public class ViewUtil {
 	static{
 		format = new SimpleDateFormat("HH:mm");
 	}
-	public static void drawBattery(Canvas canvas, int left, int top,String t) {
+	public static void drawBattery(Canvas canvas, int left, int top,String t,Paint titlePaint) {
 		Paint batteryPaint = new Paint();
 
 		float batteryStoke = 3F;
@@ -62,10 +62,6 @@ public class ViewUtil {
 
 		canvas.drawText(t, capWidth + left + batteryWidth / 2 - 10, top
 				+ batteryHeight / 2 + 6, powerPaint);
-
-		Paint titlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		titlePaint.setTextSize(25F);
-		titlePaint.setColor(Color.BLACK);
 		
 		canvas.drawText(format.format(new Date()), capWidth + left
 				+ batteryWidth + 10, top + batteryHeight / 2 + 8, titlePaint);

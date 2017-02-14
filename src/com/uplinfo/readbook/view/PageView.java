@@ -43,16 +43,6 @@ public class PageView extends View {
 		Log.d("PageView", "--PageView--height:" + viewHeight);
 	}
 
-	private void init() {
-		Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		paint.setTextSize(38F);
-		paint.setColor(Color.BLACK);
-
-		Paint titlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		titlePaint.setTextSize(25F);
-		titlePaint.setColor(Color.BLACK);
-
-	}
 
 	/**
 	 * 根据父容器传递跟子容器的大小要求来确定子容器的大小
@@ -61,7 +51,7 @@ public class PageView extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		int color = 0xffff9e85;
-		canvas.drawColor(color);
+		canvas.drawColor(param.getBackColor());
 
 		if (param == null) {
 			return;
@@ -74,7 +64,7 @@ public class PageView extends View {
 		StringUtils.drawText(canvas, text, viewWidth, viewHeight,
 				param.getTop(), param.getMargin(), param.getLineSpace(),
 				param.getFontSpace(), param.getPaint(), param.getMargin());
-		ViewUtil.drawBattery(canvas, 15, viewHeight - 80, "70");
+		ViewUtil.drawBattery(canvas, 15, viewHeight - 80, "70",param.getTitlePaint());
 
 		if (footer != null) {
 			ViewUtil.drawRight(canvas, param.getTitlePaint(), footer,

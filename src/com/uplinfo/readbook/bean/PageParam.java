@@ -7,8 +7,25 @@ public class PageParam {
 
 	private int lineSpace = 2, fontSpace = 5;
 	private int top = 100, margin = 15;
-	
-	private int width,height;
+	private int fontColor, backColor;
+
+	public int getBackColor() {
+		return backColor;
+	}
+
+	public int getFontColor() {
+		return fontColor;
+	}
+
+	public void setFontColor(int fontColor) {
+		this.fontColor = fontColor;
+	}
+
+	public void setBackColor(int backColor) {
+		this.backColor = backColor;
+	}
+
+	private int width, height;
 
 	public int getWidth() {
 		return width;

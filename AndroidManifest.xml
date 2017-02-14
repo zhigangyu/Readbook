@@ -25,22 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name=".ChapterActivity"
             android:label="@string/title_activity_chapter" >
         </activity>
+        
         <activity
             android:name=".ChapterListActivity"
             android:label="@string/title_activity_chapter_list" >
         </activity>
-        <activity
-            android:name=".FlipperChapterActivity"
-            android:label="@string/title_activity_flipper_chapter" >
-        </activity>
-        <activity
-            android:name=".ScanChapterActivity"
-            android:label="@string/title_activity_scan_chapter" >
-        </activity>
+        
         <activity
             android:name=".SlidingChapterActivity"
             android:label="@string/title_activity_sliding_chapter" >

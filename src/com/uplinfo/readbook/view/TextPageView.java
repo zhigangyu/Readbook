@@ -156,7 +156,7 @@ public class TextPageView extends View {
 		StringUtils.drawText(canvas, text, viewWidth, viewHeight, top, margin,
 				lineSpace, fontSpace, paint, margin);
 		
-		ViewUtil.drawBattery(canvas, 15, viewHeight - 80, "70");
+		ViewUtil.drawBattery(canvas, 15, viewHeight - 80, "70",titlePaint);
 
 		ViewUtil.drawRight(canvas, titlePaint, (String.valueOf(pageNum + 1)
 				+ "/" + pages.size()), margin + 5, viewHeight - 80 + 19,

@@ -113,8 +113,6 @@
     <string name="cancle_top">取消置顶</string>
     <string name="to_add">去添加</string>
     <string name="title_activity_chapter_list">ChapterListActivity</string>
-    <string name="title_activity_flipper_chapter">FlipperChapterActivity</string>
-    <string name="title_activity_scan_chapter">ScanChapterActivity</string>
     <string name="title_activity_sliding_chapter">SlidingChapterActivity</string>
 
 </resources>
