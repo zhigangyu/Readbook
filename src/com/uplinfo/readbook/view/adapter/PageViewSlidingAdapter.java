@@ -45,7 +45,7 @@ public class PageViewSlidingAdapter extends SlidingAdapter<BookPage> {
 		}
 		// caculate pages;
 		pages = ViewUtil.calcBookPage(chapter, param);
-		index = book.getPage()-1;
+		index = book.getPage() - 1;
 
 	}
 
@@ -65,7 +65,8 @@ public class PageViewSlidingAdapter extends SlidingAdapter<BookPage> {
 		b = pages.get(index);
 		chapterId = b.getId();
 		Log.d(TAG,
-				"getCurrent index,pageNum, page.size:" + index + ", " + b.getPageNum() +"," + pages.size());
+				"getCurrent index,pageNum, page.size:" + index + ", "
+						+ b.getPageNum() + "," + pages.size());
 		// save prosess
 		bookDao.saveBookProgress(b.getBookid(), b.getId(), b.getPageNum());
 		return b;
@@ -120,9 +121,17 @@ public class PageViewSlidingAdapter extends SlidingAdapter<BookPage> {
 			//
 			List<BookPage> nextpages = ViewUtil.calcBookPage(b, param);
 			index += nextpages.size();
-			pages.addAll(0,nextpages);
+			pages.addAll(0, nextpages);
 		}
 		return true;
+	}
+
+	public void gotoPage(int chapterId) {
+		this.chapterId = chapterId;
+		Chapter b = bookDao.queryChapter(chapterId);
+		pages.clear();
+		pages.addAll(ViewUtil.calcBookPage(b, param));
+		index = 0;
 	}
 
 }

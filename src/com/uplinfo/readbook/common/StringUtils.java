@@ -93,7 +93,7 @@ public class StringUtils {
 			int hh = top;
 
 			for (char c : chs) {
-				if (ww > (width - 2 * left -2) || c == '\r') {
+				if (ww > (width - 2 * left - fontWeight/2 ) || c == '\r') {
 					ww = left;
 					hh += lineHeight;
 				}
@@ -134,7 +134,7 @@ public class StringUtils {
 			int hh = top;
 
 			for (char c : chs) {
-				if (ww > (width - 2 * left- 2) || c == '\r') {
+				if (ww > (width - 2 * left- fontWeight/2) || c == '\r') {
 					ww = left;
 					hh += lineHeight;
 				}
