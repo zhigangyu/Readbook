@@ -1,6 +1,7 @@
 package com.uplinfo.readbook.bean;
 
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 public class PageParam {
 	private Paint paint, titlePaint;
@@ -8,6 +9,16 @@ public class PageParam {
 	private int lineSpace = 2, fontSpace = 5;
 	private int top = 100, margin = 15;
 	private int fontColor, backColor;
+
+	private Typeface typeface;
+	
+	public Typeface getTypeface() {
+		return typeface;
+	}
+
+	public void setTypeface(Typeface typeface) {
+		this.typeface = typeface;
+	}
 
 	public int getBackColor() {
 		return backColor;

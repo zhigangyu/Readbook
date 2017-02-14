@@ -4,10 +4,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +53,7 @@ public class SlidingChapterActivity extends Activity {
 
 	private PageParam param;
 	private PageViewSlidingAdapter pageAdapter;
+	private BookApplication appState;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +67,9 @@ public class SlidingChapterActivity extends Activity {
 			bookid = (int) _intent.getIntExtra("id", 1);
 		}
 
-		param = initPageParam();
+		appState = ((BookApplication)getApplicationContext()); 
+		
+		param = appState.getParam();
 
 		bookDao = new BookDao();
 
@@ -135,7 +134,10 @@ public class SlidingChapterActivity extends Activity {
 		titleBar = (View) findViewById(R.id.tool_bar);
 		txtTitle = (TextView) findViewById(R.id.txt_title);
 		tvBookReadToc = (TextView) findViewById(R.id.tvBookReadToc);
+		
 		txtTitle.setText(book.getName());
+		txtTitle.setTypeface(appState.getParam().getTypeface());
+		txtTitle.getPaint().setFakeBoldText(true);
 
 		tvBookReadToc.setOnClickListener(new OnClickListener() {
 
@@ -147,33 +149,7 @@ public class SlidingChapterActivity extends Activity {
 		});
 	}
 
-	private PageParam initPageParam() {
-		PageParam p = new PageParam();
-		
-		AssetManager mgr = getAssets();
-		Typeface tf = Typeface.createFromAsset(mgr, "fonts/xy.ttf");
-			
-		p.setFontColor(getResources().getColor(R.color.chapter_content_day));
-		p.setBackColor(getResources().getColor(R.color.read_theme_green));
-		
-		Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		paint.setTextSize(36F);
-		//paint.setColor(Color.BLACK);
-		paint.setColor(p.getFontColor());
-		
-		paint.setTypeface(tf);
-		p.setPaint(paint);
 
-		Paint titlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		titlePaint.setTextSize(25F);
-		//titlePaint.setColor(Color.BLACK);
-		titlePaint.setColor(p.getFontColor());
-		titlePaint.setTypeface(tf);
-		p.setTitlePaint(titlePaint);
-
-		p.setLineSpace(12);
-		return p;
-	}
 
 	void initChapterTitle() {
 		popupWindowView = getLayoutInflater().inflate(
@@ -201,7 +177,7 @@ public class SlidingChapterActivity extends Activity {
 		View tool_bar = (View) popupWindowView.findViewById(R.id.tool_bar);
 		tool_bar.setVisibility(View.GONE);
 
-		chapterTitleView.setAdapter(new ChapterListAdapter(this, chapters));
+		chapterTitleView.setAdapter(new ChapterListAdapter(this, chapters,param));
 
 		chapterTitleView.setOnItemClickListener(new OnItemClickListener() {
 

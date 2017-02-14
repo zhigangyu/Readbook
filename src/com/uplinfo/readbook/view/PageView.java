@@ -64,11 +64,12 @@ public class PageView extends View {
 		StringUtils.drawText(canvas, text, viewWidth, viewHeight,
 				param.getTop(), param.getMargin(), param.getLineSpace(),
 				param.getFontSpace(), param.getPaint(), param.getMargin());
-		ViewUtil.drawBattery(canvas, 15, viewHeight - 80, "70",param.getTitlePaint());
+		
+		ViewUtil.drawBattery(canvas, 15, viewHeight - 40, "70",param.getTitlePaint());
 
 		if (footer != null) {
 			ViewUtil.drawRight(canvas, param.getTitlePaint(), footer,
-					param.getMargin() + 5, viewHeight - 80 + 19, this.viewWidth);
+					param.getMargin() + 5, viewHeight - 40 + 19, this.viewWidth);
 		}
 		canvas.restore();
 	}

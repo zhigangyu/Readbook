@@ -11,15 +11,19 @@ import android.widget.TextView;
 
 import com.uplinfo.readbook.R;
 import com.uplinfo.readbook.bean.Chapter;
+import com.uplinfo.readbook.bean.PageParam;
 
 public class ChapterListAdapter extends BaseAdapter {
-	
+
 	private LayoutInflater inflater = null;
 	private List<Chapter> chapters;
+	private PageParam param;
 
-	public ChapterListAdapter(Context context,List<Chapter> chapters) {
+	public ChapterListAdapter(Context context, List<Chapter> chapters,
+			PageParam param) {
 		this.inflater = LayoutInflater.from(context);
 		this.chapters = chapters;
+		this.param = param;
 	}
 
 	@Override
@@ -43,23 +47,24 @@ public class ChapterListAdapter extends BaseAdapter {
 		// 如果缓存convertView为空，则需要创建View
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.item_chapter_title,
-					null);
+			convertView = inflater.inflate(R.layout.item_chapter_title, null);
 
-			holder.title = (TextView) convertView
-					.findViewById(R.id.txt_left);
+			holder.title = (TextView) convertView.findViewById(R.id.txt_left);
+
+			if (param.getTypeface() != null) {
+				holder.title.getPaint().setTypeface(param.getTypeface());
+			}
 
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.title
-				.setText(chapters.get(position).getTitle());
+		holder.title.setText(chapters.get(position).getTitle());
 
 		return convertView;
 	}
-	
+
 	final class ViewHolder {
 
 		public TextView title;
