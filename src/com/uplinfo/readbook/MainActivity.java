@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		init();
+		
 
 		appState = ((BookApplication) getApplicationContext());
 
@@ -73,6 +73,8 @@ public class MainActivity extends Activity {
 		TextView tvTitle = (TextView) findViewById(R.id.txt_title);
 
 		tvTitle.setTypeface(tf);
+		
+		init();
 	}
 
 	private void init() {
