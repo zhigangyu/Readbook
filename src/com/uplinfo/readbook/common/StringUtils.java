@@ -6,9 +6,12 @@ import java.util.List;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetrics;
+import android.os.Environment;
 
 public class StringUtils {
 
+	public static final String BOOK_ROOT = Environment.getExternalStorageDirectory().getPath()
+			+ "/uplinbook";
 	/**
 	 * 根据输入的文本信息分页
 	 * 

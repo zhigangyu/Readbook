@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 			p.setTitlePaint(titlePaint);
 
 			p.setLineSpace(18);
-			p.setTop(156);
+			p.setTop(186);
 			
 			p.setMargin(40);
 			p.setStatusBarHeight(statusBarHeight(getResources()));

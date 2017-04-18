@@ -21,14 +21,12 @@ public class SqliteTemplate {
 	 */
 	private SQLiteDatabase conect() throws IOException {
 			
-		File db = new File(Environment.getExternalStorageDirectory().getPath()
-				+ "/uplinbook");
+		File db = new File(StringUtils.BOOK_ROOT);
 		if (!db.exists()) {
 			db.mkdir();
 		}
-		return SQLiteDatabase.openOrCreateDatabase(
-				Environment.getExternalStorageDirectory().getPath()
-						+ "/uplinbook/book.db", null);
+		return SQLiteDatabase.openOrCreateDatabase(StringUtils.BOOK_ROOT
+						+ "/book.db", null);
 	}
 	public void exeSql(String sql) {
 		SQLiteDatabase db = null;

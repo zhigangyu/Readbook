@@ -40,7 +40,8 @@
 			android:layout_below="@+id/txt_name"
 			android:layout_marginLeft="13dp"
 			android:layout_marginRight="16dp"
-			android:singleLine="true" />
+			android:singleLine="false"
+			android:textColor="?attr/cr_text"  />
 		 
 	</RelativeLayout>
 	<View

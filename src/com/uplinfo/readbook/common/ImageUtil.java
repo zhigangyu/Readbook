@@ -1,7 +1,11 @@
 package com.uplinfo.readbook.common;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ThumbnailUtils;
 
@@ -67,4 +71,36 @@ public class ImageUtil {
 			return null;
 		}
 	}
+	/**
+	 * 
+	 * @param path
+	 * @return
+	 */
+	public static Bitmap getBitmapFromPath(String path) {  
+		  
+        if (!new File(path).exists()) {  
+            System.err.println("getBitmapFromPath: file not exists");  
+            return null;  
+        }  
+  
+        byte[] buf = new byte[1024 * 1024];// 1M  
+        Bitmap bitmap = null;  
+  
+        try {  
+  
+            FileInputStream fis = new FileInputStream(path);  
+            int len = fis.read(buf, 0, buf.length);  
+            bitmap = BitmapFactory.decodeByteArray(buf, 0, len);  
+            if (bitmap == null) {  
+                System.out.println("len= " + len);  
+                System.err  
+                        .println("path: " + path + "  could not be decode!!!");  
+            }  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+  
+        }  
+  
+        return bitmap;  
+    } 
 }
