@@ -3,6 +3,7 @@ package com.uplinfo.readbook;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Paint;
@@ -51,22 +52,36 @@ public class MainActivity extends Activity {
 			p.setTypeface(tf);
 
 			p.setFontColor(getResources().getColor(R.color.chapter_content_day));
-			p.setBackColor(getResources().getColor(R.color.read_theme_yellow));
+			//p.setBackColor(getResources().getColor(R.color.read_theme_yellow));
+			p.setBackColor(0xffff9e85);
 
 			Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-			paint.setTextSize(36F);
+			paint.setTextSize(dip2px(this,18F));
 			paint.setColor(p.getFontColor());
 
 			paint.setTypeface(tf);
 			p.setPaint(paint);
 
 			Paint titlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-			titlePaint.setTextSize(25F);
+			titlePaint.setTextSize(dip2px(this,12F));
 			titlePaint.setColor(p.getFontColor());
 			titlePaint.setTypeface(tf);
 			p.setTitlePaint(titlePaint);
 
-			p.setLineSpace(12);
+			p.setLineSpace(18);
+			p.setTop(156);
+			
+			p.setMargin(40);
+			p.setStatusBarHeight(statusBarHeight(getResources()));
+			
+			/*荣耀6 分辨率*/
+//			paint.setTextSize(36F); 
+//			titlePaint.setTextSize(25F);
+//			p.setLineSpace(12);
+//			p.setTop(100);
+//			p.setMargin(15);
+//			p.setStatusBarHeight(40);
+			
 			appState.setParam(p);
 		}
 
@@ -75,6 +90,10 @@ public class MainActivity extends Activity {
 		tvTitle.setTypeface(tf);
 		
 		init();
+	}
+	
+	private int statusBarHeight(android.content.res.Resources res) {
+	    return (int) (24 * res.getDisplayMetrics().density);
 	}
 
 	private void init() {
@@ -161,5 +180,22 @@ public class MainActivity extends Activity {
 		}
 	};
 
+	/** 
+	* 根据手机的分辨率从 dp 的单位 转成为 px(像素) 
+	*/  
+	public static int dip2px(Context context, float dpValue) {  
+	  final float scale = context.getResources().getDisplayMetrics().density;  
+	  return (int) (dpValue * scale + 0.5f);  
+	}  
+	  
+	/** 
+	* 根据手机的分辨率从 px(像素) 的单位 转成为 dp 
+	*/  
+	public static int px2dip(Context context, float pxValue) {  
+	  final float scale = context.getResources().getDisplayMetrics().density;  
+	  return (int) (pxValue / scale + 0.5f);  
+	}
+	
+	
 	
 }

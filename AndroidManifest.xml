@@ -10,17 +10,18 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+   
     <application
         android:name="BookApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppThemeDefault" >
+        
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
+           <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,16 +29,23 @@
         </activity>
         <activity
             android:name=".ChapterActivity"
-            android:label="@string/title_activity_chapter" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ChapterListActivity"
-            android:label="@string/title_activity_chapter_list" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".SlidingChapterActivity"
-            android:label="@string/title_activity_sliding_chapter" >
+            android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name=".BookActivity"
+            android:screenOrientation="portrait" >
+             
+        </activity>
+        
     </application>
 
 </manifest>

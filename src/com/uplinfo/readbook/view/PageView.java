@@ -59,7 +59,7 @@ public class PageView extends View {
 		canvas.save();
 
 		if (title != null) {
-			canvas.drawText(title, param.getMargin(), 40, param.getTitlePaint());
+			canvas.drawText(title, param.getMargin(), 60, param.getTitlePaint());
 		}
 		StringUtils.drawText(canvas, text, viewWidth, viewHeight,
 				param.getTop(), param.getMargin(), param.getLineSpace(),

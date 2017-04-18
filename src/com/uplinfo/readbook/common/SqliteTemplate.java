@@ -20,6 +20,7 @@ public class SqliteTemplate {
 	 * @throws IOException
 	 */
 	private SQLiteDatabase conect() throws IOException {
+			
 		File db = new File(Environment.getExternalStorageDirectory().getPath()
 				+ "/uplinbook");
 		if (!db.exists()) {

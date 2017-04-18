@@ -11,7 +11,8 @@
             android:text="@string/app_name"
             android:textSize="16sp"
             android:layout_marginStart="20dp"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:textColor="@color/chapter_content_day" />
 
     <View
         android:layout_width="match_parent"

@@ -20,7 +20,7 @@ public class StringUtils {
 	 * @param paint
 	 * @return
 	 */
-	public static List<String> calcText(String text, int width, int height,
+	private static List<String> calcText(String text, int width, int height,
 			int lineSpace, int fontSpace, Paint paint) {
 		FontMetrics fm = paint.getFontMetrics();
 		int fontHeight = (int) Math.ceil(fm.descent - fm.ascent);
@@ -39,7 +39,7 @@ public class StringUtils {
 			int y = 0;
 			int line = 0;
 			for (char c : chs) {
-				if (x > width || c == '\r') {
+				if (x > width || c == '\n') {
 					x = 0;
 					y += lineHeight;
 					line++;
@@ -56,6 +56,10 @@ public class StringUtils {
 				if (checkSingle(c)) {
 					x += paint.measureText(String.valueOf(c)) + fontSpace;
 				} else {
+					x += fontWeight + fontSpace;
+				}
+				
+				if(c == '\n'){
 					x += fontWeight + fontSpace;
 				}
 			}
@@ -85,7 +89,7 @@ public class StringUtils {
 		int fontHeight = (int) Math.ceil(fm.descent - fm.ascent);
 		int fontWeight = (int) paint.measureText("ͼ");
 		int lineHeight = fontHeight + lineSpace;
-
+		top = top + lineSpace;
 		if (txt != null) {
 			
 			char[] chs = txt.toCharArray();
@@ -93,19 +97,24 @@ public class StringUtils {
 			int hh = top;
 
 			for (char c : chs) {
-				if (ww > (width - 2 * left - fontWeight/2 ) || c == '\r') {
+				if (ww > (width - 2 * left - fontWeight/3 ) || c == '\n') {
 					ww = left;
 					hh += lineHeight;
 				}
-				if (hh > (height - top - marginHeight * 2)) {
+				
+				if (hh > height ) {
 					break;
 				}
 
 				canvas.drawText(String.valueOf(c), ww, hh, paint);
 
 				if (checkSingle(c)) {
-					ww += paint.measureText(String.valueOf(c)) + fontSpace;
+					ww += paint.measureText(String.valueOf(c));
 				} else {
+					ww += fontWeight + fontSpace;
+				}
+				
+				if(c == '\n'){
 					ww += fontWeight + fontSpace;
 				}
 
@@ -122,6 +131,8 @@ public class StringUtils {
 		int fontWeight = (int) paint.measureText("ͼ");
 		int lineHeight = fontHeight + lineSpace;
 
+		top = top + lineSpace;
+		
 		StringBuilder buffer = new StringBuilder();
 		List<String> pages = new ArrayList<String>();
 
@@ -134,20 +145,25 @@ public class StringUtils {
 			int hh = top;
 
 			for (char c : chs) {
-				if (ww > (width - 2 * left- fontWeight/2) || c == '\r') {
+				if (ww > (width - 2 * left- fontWeight/3) || c == '\n') {
 					ww = left;
 					hh += lineHeight;
 				}
-				if (hh > (height - top - marginHeight * 2)) {
+				if (hh > (height - top )) {
 					pages.add(buffer.toString());
 					buffer.setLength(0);
 					hh = top;
 				}
 
 				buffer.append(c);
+				
 				if (checkSingle(c)) {
-					ww += paint.measureText(String.valueOf(c)) + fontSpace;
+					ww += paint.measureText(String.valueOf(c));
 				} else {
+					ww += fontWeight + fontSpace;
+				}
+				
+				if(c == '\n'){
 					ww += fontWeight + fontSpace;
 				}
 

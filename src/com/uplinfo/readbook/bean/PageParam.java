@@ -9,6 +9,15 @@ public class PageParam {
 	private int lineSpace = 2, fontSpace = 5;
 	private int top = 100, margin = 15;
 	private int fontColor, backColor;
+	private int statusBarHeight;
+
+	public int getStatusBarHeight() {
+		return statusBarHeight;
+	}
+
+	public void setStatusBarHeight(int statusBarHeight) {
+		this.statusBarHeight = statusBarHeight;
+	}
 
 	private Typeface typeface;
 	

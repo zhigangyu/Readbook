@@ -3,13 +3,15 @@
     android:id="@+id/layout_chater"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:u="http://schemas.android.com/apk/res/com.uplinfo.readbook"
      >
 
     <com.uplinfo.readbook.view.PageView
         android:id="@+id/textview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center" >
+        android:gravity="center" 
+        u:title="dd">
     </com.uplinfo.readbook.view.PageView>
 
 

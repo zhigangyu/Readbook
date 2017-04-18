@@ -1,28 +1,104 @@
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
-
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:windowNoTitle">true</item>
+    <style name="AppTheme" parent="AppTheme.Base"></style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Actionbar color -->
+        <item name="colorPrimary">@color/blue</item>
+        <!-- Status bar color -->
+        <!--  
+        <item name="colorPrimaryDark">@color/transparent</item>
+        -->
+        <!-- Window color -->
         <item name="android:windowBackground">@color/windows_color</item>
     </style>
-    
+
+    <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat">
+        <item name="android:colorBackground">#212121</item>
+    </style>
+
     <style name="txt_titleStyle1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppThemeDefault" parent="AppTheme">
+        <item name="android:fastScrollThumbDrawable">@drawable/vec_icon_drag_day</item>
+        <item name="cr_main">#ff587eb7</item>
+        <item name="cr_main_highlight">#ff4f70a2</item>
+        <item name="cr_menu_bkg">#eefbf9f7</item>
+        <item name="cr_input_bkg">#fff0f0f0</item>
+        <item name="cr_caption">#ff587eb7</item>
+        <item name="cr_bkg">#fffbf9f7</item>
+        <item name="cr_bkg_highlight">#fff0f0f0</item>
+        <item name="cr_toolbar">#fff5f5f5</item>
+        <item name="cr_text">#ff555555</item>
+        <item name="cr_text_subline">#ffaaaaaa</item>
+        <item name="cr_text_inverse">#ffffffff</item>
+        <item name="cr_text_subline_inverse">#ffc0c0c0</item>
+        <item name="cr_text_hint">#ff3f7795</item>
+        <item name="cr_text_hint_inverse">#44000000</item>
+        <item name="cr_text_input">#ff555555</item>
+        <item name="cr_text_toolbar">#ff587eb7</item>
+        <item name="cr_bkg_novel">#ffebebeb</item>
+        <item name="cr_text_novel">#ff203241</item>
+        <item name="cr_text_subline_novel">#ffa6afb5</item>
+        <item name="cr_icon">#ff404040</item>
+        <item name="cr_icon_pressed">#ff606060</item>
+        <item name="cr_icon_inverse">#ffffffff</item>
+        <item name="cr_icon_inverse_pressed">#ffa0a0a0</item>
+        <item name="cr_icon_foreground_gray">#ffbbbbbb</item>
+        <item name="cr_button">#ffffffff</item>
+        <item name="cr_button_pressed">#ffaaaaaa</item>
+        <item name="cr_warning">#fff99b33</item>
+        <item name="cr_dangerous_text">#ff952a2a</item>
+        <item name="cr_dangerous">#ffa00000</item>
+        <item name="cr_dangerous_highlight">#ffd00000</item>
+        <item name="cr_split_dark">#1a000000</item>
+        <item name="cr_split_highlight">#1affffff</item>
+
+    </style>
+
+    <style name="AppThemeNight" parent="AppTheme">
+        <item name="android:fastScrollThumbDrawable">@drawable/vec_icon_drag_night</item>
+        <item name="cr_main">#ff151718</item>
+        <item name="cr_main_highlight">#ff2d2f30</item>
+        <item name="cr_menu_bkg">#ee282a2a</item>
+        <item name="cr_input_bkg">#ff2d2f30</item>
+        <item name="cr_caption">#ff151718</item>
+        <item name="cr_bkg">#ff111212</item>
+        <item name="cr_bkg_highlight">#ff1a1b1b</item>
+        <item name="cr_toolbar">#ff151718</item>
+        <item name="cr_text">#ff505656</item>
+        <item name="cr_text_subline">#ff2d2f2f</item>
+        <item name="cr_text_inverse">#ff808080</item>
+        <item name="cr_text_subline_inverse">#ff606060</item>
+        <item name="cr_text_hint">#ff404040</item>
+        <item name="cr_text_hint_inverse">#ff404040</item>
+        <item name="cr_text_input">#ff808080</item>
+        <item name="cr_text_toolbar">#ffa7a8b7</item>
+        <item name="cr_bkg_novel">#ff111212</item>
+        <item name="cr_text_novel">#ff505656</item>
+        <item name="cr_text_subline_novel">#ff464949</item>
+        <item name="cr_icon">#ff606060</item>
+        <item name="cr_icon_pressed">#ff808080</item>
+        <item name="cr_icon_inverse">#ff808080</item>
+        <item name="cr_icon_inverse_pressed">#ff707070</item>
+        <item name="cr_icon_foreground_gray">#ffbbbbbb</item>
+        <item name="cr_button">#ff202020</item>
+        <item name="cr_button_pressed">#ff606060</item>
+        <item name="cr_warning">#fff99b33</item>
+        <item name="cr_dangerous_text">#ff952a2a</item>
+        <item name="cr_dangerous">#ffa00000</item>
+        <item name="cr_dangerous_highlight">#ffd00000</item>
+        <item name="cr_split_dark">#ff000000</item>
+        <item name="cr_split_highlight">#0affffff</item>
+      
     </style>
 
 </resources>

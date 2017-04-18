@@ -3,7 +3,9 @@ package com.uplinfo.readbook;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.uplinfo.readbook.bean.Book;
 import com.uplinfo.readbook.bean.Chapter;
@@ -37,7 +40,7 @@ public class ChapterActivity extends Activity {
 	TextView txtTitle;
 	TextView tvBookReadToc;
 	//
-	private int bookid,m_chapterid;
+	private int bookid, m_chapterid;
 
 	private BookDao bookDao;
 
@@ -53,8 +56,6 @@ public class ChapterActivity extends Activity {
 		setContentView(R.layout.activity_chapter);
 		bookDao = new BookDao();
 
-		
-		
 		statusBar = (View) findViewById(R.id.chapter_status_bar);
 		titleBar = (View) findViewById(R.id.tool_bar);
 		txtTitle = (TextView) findViewById(R.id.txt_title);
@@ -63,10 +64,10 @@ public class ChapterActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Intent intent = new Intent(ChapterActivity.this,
-//						ChapterListActivity.class);
-//				intent.putExtra("id", bookid);
-//				startActivity(intent);
+				// Intent intent = new Intent(ChapterActivity.this,
+				// ChapterListActivity.class);
+				// intent.putExtra("id", bookid);
+				// startActivity(intent);
 				popWin(v);
 			}
 
@@ -78,10 +79,10 @@ public class ChapterActivity extends Activity {
 	void chaterChange(int bookid, int id, int p) {
 		try {
 			Chapter b = bookDao.queryChapter(id, bookid, p);
-			if(b != null){
+			if (b != null) {
 				txtView.setChapter(b);
 				txtView.setEnd(false);
-			}else{
+			} else {
 				txtView.setEnd(true);
 			}
 		} catch (Exception ex) {
@@ -98,8 +99,8 @@ public class ChapterActivity extends Activity {
 
 			Book book = bookDao.queryBook(bookid);
 			txtTitle.setText(book.getName());
-			
-			//章节名称列表
+
+			// 章节名称列表
 			chapters = bookDao.queryChapterTitles(bookid);
 
 			Chapter b = bookDao.queryChapter(book.getChapterid());
@@ -127,7 +128,7 @@ public class ChapterActivity extends Activity {
 
 					@Override
 					public void onPageChange(int bookid, int chapterid, int page) {
-						
+
 						m_chapterid = chapterid;
 						bookDao.saveBookProgress(bookid, chapterid, page);
 						if (titleBar.getVisibility() == View.VISIBLE) {
@@ -159,37 +160,36 @@ public class ChapterActivity extends Activity {
 			ex.printStackTrace();
 		}
 	}
-	
-	void initChapterTitle(){
+
+	void initChapterTitle() {
 		popupWindowView = getLayoutInflater().inflate(
 				R.layout.activity_chapter_list, null, false);
-		
+
 		popupWindowView.setFocusable(true);
 		popupWindowView.setFocusableInTouchMode(true);
-		
-		popupWindowView.setOnKeyListener(new OnKeyListener(){  
-		    @Override  
-		    public boolean onKey(View arg0, int arg1, KeyEvent arg2) {  
-		            if (arg1 == KeyEvent.KEYCODE_BACK){  
-		            if(popupWindow != null) {  
-		            	popupWindow.dismiss();  
-						popupWindow = null;   
-		               }   
-		            }  
-		             return false;   
-		    }  
-		 }); 
-		
-		
+
+		popupWindowView.setOnKeyListener(new OnKeyListener() {
+			@Override
+			public boolean onKey(View arg0, int arg1, KeyEvent arg2) {
+				if (arg1 == KeyEvent.KEYCODE_BACK) {
+					if (popupWindow != null) {
+						popupWindow.dismiss();
+						popupWindow = null;
+					}
+				}
+				return false;
+			}
+		});
+
 		chapterTitleAdapter = new ListAdapter(this);
 
-		chapterTitleView = (ListView) popupWindowView.findViewById(R.id.listview);
-		TextView poptitleView = (TextView) popupWindowView.findViewById(R.id.txt_title);
-		View tool_bar = (View)popupWindowView.findViewById(R.id.tool_bar);
+		chapterTitleView = (ListView) popupWindowView
+				.findViewById(R.id.listview);
+		TextView poptitleView = (TextView) popupWindowView
+				.findViewById(R.id.txt_title);
+		View tool_bar = (View) popupWindowView.findViewById(R.id.tool_bar);
 		tool_bar.setVisibility(View.GONE);
-		
-		
-		
+
 		chapterTitleView.setAdapter(chapterTitleAdapter);
 
 		chapterTitleView.setOnItemClickListener(new OnItemClickListener() {
@@ -197,11 +197,11 @@ public class ChapterActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Chapter b = bookDao.queryChapter((int)id);
+				Chapter b = bookDao.queryChapter((int) id);
 				txtView.setChapter(b);
 				txtView.setPageNum(0);
-				popupWindow.dismiss();  
-				popupWindow = null; 
+				popupWindow.dismiss();
+				popupWindow = null;
 				titleBar.setVisibility(View.INVISIBLE);
 				statusBar.setVisibility(View.INVISIBLE);
 			}
@@ -210,22 +210,28 @@ public class ChapterActivity extends Activity {
 	}
 
 	private void popWin(View v) {
-		int w = (int)((float)display.getWidth() * 1F);
-		int h = (int)((float)display.getHeight() * 0.98F);
-		
-		
-		
-		popupWindow = new PopupWindow(popupWindowView,
-				w, h, true);
-		//popupWindow.setAnimationStyle(R.style.AnimationFade); 
+		int w = (int) ((float) display.getWidth() * 1F);
+		int h = (int) ((float) display.getHeight() * 0.98F);
+
+		popupWindow = new PopupWindow(popupWindowView, w, h, true);
+		// popupWindow.setAnimationStyle(R.style.AnimationFade);
 		ColorDrawable dw = new ColorDrawable(0xb0000000);
 		popupWindow.setBackgroundDrawable(dw);
 		popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
-	
-		
-		//popupWindow.showAsDropDown(v);
+
+		// popupWindow.showAsDropDown(v);
 	}
-	
+
+	private void showError(String msg) {
+		new AlertDialog.Builder(ChapterActivity.this).setTitle("Error")
+				.setMessage(msg)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+					}
+				}).show();
+	}
+
 	class ListAdapter extends BaseAdapter {
 		private LayoutInflater mInflater = null;
 
@@ -265,8 +271,7 @@ public class ChapterActivity extends Activity {
 				holder = (ViewHolder) convertView.getTag();
 			}
 
-			holder.title
-					.setText(chapters.get(position).getTitle());
+			holder.title.setText(chapters.get(position).getTitle());
 
 			return convertView;
 		}
