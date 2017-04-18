@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="horizontal_spacing" format="dimension" />
+    <attr name="vertical_spacing" format="dimension" />
+    <attr name="cr_main" format="color" />
+    <attr name="cr_main_highlight" format="color" />
+    <attr name="cr_menu_bkg" format="color" />
+    <attr name="cr_input_bkg" format="color" />
+    <attr name="cr_caption" format="color" />
+    <attr name="cr_bkg" format="color" />
+    <attr name="cr_bkg_highlight" format="color" />
+    <attr name="cr_toolbar" format="color" />
+    <attr name="cr_text" format="color" />
+    <attr name="cr_text_subline" format="color" />
+    <attr name="cr_text_inverse" format="color" />
+    <attr name="cr_text_subline_inverse" format="color" />
+    <attr name="cr_text_hint" format="color" />
+    <attr name="cr_text_hint_inverse" format="color" />
+    <attr name="cr_text_input" format="color" />
+    <attr name="cr_text_toolbar" format="color" />
+    <attr name="cr_bkg_novel" format="color" />
+    <attr name="cr_text_novel" format="color" />
+    <attr name="cr_text_subline_novel" format="color" />
+    <attr name="cr_icon" format="color" />
+    <attr name="cr_icon_pressed" format="color" />
+    <attr name="cr_icon_inverse" format="color" />
+    <attr name="cr_icon_inverse_pressed" format="color" />
+    <attr name="cr_icon_foreground_gray" format="color" />
+    <attr name="cr_button" format="color" />
+    <attr name="cr_button_pressed" format="color" />
+    <attr name="cr_warning" format="color" />
+    <attr name="cr_dangerous_text" format="color" />
+    <attr name="cr_dangerous" format="color" />
+    <attr name="cr_dangerous_highlight" format="color" />
+    <attr name="cr_split_dark" format="color" />
+    <attr name="cr_split_highlight" format="color" />
+    <declare-styleable name="PageView"> 
+        <attr name="cr_text" /> 
+    </declare-styleable>
+</resources>
